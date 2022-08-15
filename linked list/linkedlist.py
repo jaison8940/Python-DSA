@@ -1,37 +1,22 @@
 class Node:
-    def __init__(self, data=None, prev=None, next=None):
+    def __init__(self, data=None, next=None):
         self.data = data
-        
-        self.prev = prev
         self.next = next
-        
 
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.tail = None
 
-    def print_forward(self):
+    def print(self):
         if self.head is None:
             print("Linked list is empty")
             return
         itr = self.head
-        linkliststr = ''
+        linkedliststr = ''
         while itr:
-            linkliststr += str(itr.data)+' --> ' if itr.next else str(itr.data)
+            linkedliststr += str(itr.data)+' --> ' if itr.next else str(itr.data)
             itr = itr.next
-        print(linkliststr)
-    
-    def print_backward(self):
-        if self.tail is None:
-            print("Linked list is empty")
-            return
-        itr = self.tail
-        linkliststr = ''
-        while itr:
-            linkliststr += str(itr.data)+' --> ' if itr.prev else str(itr.data)
-            itr = itr.prev
-        print(linkliststr)
+        print(linkedliststr)
 
     def get_length(self):
         count = 0
@@ -43,13 +28,12 @@ class LinkedList:
         return count
 
     def insert_at_begining(self, data):
-        node = Node(data, None, self.head)
+        node = Node(data, self.head)
         self.head = node
 
     def insert_at_end(self, data):
         if self.head is None:
-            node = Node(data, None, None)
-            self.head,self.tail = node, node
+            self.head = Node(data, None)
             return
 
         itr = self.head
@@ -57,9 +41,7 @@ class LinkedList:
         while itr.next:
             itr = itr.next
 
-        node = Node(data, itr, None)
-        itr.next = node
-        self.tail = node
+        itr.next = Node(data, None)
 
     def insert_at(self, index, data):
         if index<0 or index>self.get_length():
@@ -73,7 +55,7 @@ class LinkedList:
         itr = self.head
         while itr:
             if count == index - 1:
-                node = Node(data, itr, itr.next)
+                node = Node(data, itr.next)
                 itr.next = node
                 break
 
@@ -86,7 +68,6 @@ class LinkedList:
 
         if index==0:
             self.head = self.head.next
-            self.head.prev = None
             return
 
         count = 0
@@ -94,7 +75,6 @@ class LinkedList:
         while itr:
             if count == index - 1:
                 itr.next = itr.next.next
-                itr.next.prev = itr
                 break
 
             itr = itr.next
@@ -113,8 +93,7 @@ class LinkedList:
         itr = self.head
         while itr:
             if itr.data == data_after:
-                node = Node(data_to_insert, itr, itr.next)
-                itr.next.prev = node
+                node = Node(data_to_insert, itr.next)
                 itr.next = node
             
             itr = itr.next
@@ -125,8 +104,7 @@ class LinkedList:
             return
         
         if self.head.data == data:
-            head = head.next
-            head.prev = None
+            head = head.next 
             return
         
         itr = self.head
@@ -134,7 +112,6 @@ class LinkedList:
         while itr:
             if itr.data == data:
                 prev.next = itr.next
-                itr.next.prev = prev
             
             prev = itr
             itr = itr.next
@@ -142,20 +119,16 @@ class LinkedList:
 
 
 if __name__ == '__main__':
-    linklist = LinkedList()
-    linklist.insert_values(["banana","mango","grapes","orange"])
-    linklist.insert_at(1,"blueberry")
-    linklist.remove_at(2)
-    linklist.print_forward()
-    linklist.print_backward()
+    linkedlist = LinkedList()
+    linkedlist.insert_values(["banana","mango","grapes","orange"])
+    linkedlist.insert_at(1,"blueberry")
+    linkedlist.remove_at(2)
+    linkedlist.print()
 
-    linklist.insert_values([45,7,12,567,99])
-    linklist.insert_at_end(67)
-    linklist.print_forward()
-    linklist.print_backward()
-    linklist.insert_after_value(7, 22)
-    linklist.print_forward()
-    linklist.print_backward()
-    linklist.remove_by_value(22)
-    linklist.print_forward()
-    linklist.print_backward()
+    linkedlist.insert_values([45,7,12,567,99])
+    linkedlist.insert_at_end(67)
+    linkedlist.print()
+    linkedlist.insert_after_value(7, 22)
+    linkedlist.print()
+    linkedlist.remove_by_value(22)
+    linkedlist.print()
