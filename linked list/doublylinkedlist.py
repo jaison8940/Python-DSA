@@ -16,22 +16,22 @@ class LinkedList:
             print("Linked list is empty")
             return
         itr = self.head
-        llstr = ''
+        doublylinkliststr = ''
         while itr:
-            llstr += str(itr.data)+' --> ' if itr.next else str(itr.data)
+            doublylinkliststr += str(itr.data)+' --> ' if itr.next else str(itr.data)
             itr = itr.next
-        print(llstr)
+        print(doublylinkliststr)
     
     def print_backward(self):
         if self.tail is None:
             print("Linked list is empty")
             return
         itr = self.tail
-        llstr = ''
+        doublylinkliststr = ''
         while itr:
-            llstr += str(itr.data)+' --> ' if itr.prev else str(itr.data)
+            doublylinkliststr += str(itr.data)+' --> ' if itr.prev else str(itr.data)
             itr = itr.prev
-        print(llstr)
+        print(doublylinkliststr)
 
     def get_length(self):
         count = 0
@@ -142,20 +142,20 @@ class LinkedList:
 
 
 if __name__ == '__main__':
-    ll = LinkedList()
-    ll.insert_values(["banana","mango","grapes","orange"])
-    ll.insert_at(1,"blueberry")
-    ll.remove_at(2)
-    ll.print_forward()
-    ll.print_backward()
+    doublylinklist = LinkedList()
+    doublylinklist.insert_values(["banana","mango","grapes","orange"])
+    doublylinklist.insert_at(1,"blueberry")
+    doublylinklist.remove_at(2)
+    doublylinklist.print_forward()
+    doublylinklist.print_backward()
 
-    ll.insert_values([45,7,12,567,99])
-    ll.insert_at_end(67)
-    ll.print_forward()
-    ll.print_backward()
-    ll.insert_after_value(7, 22)
-    ll.print_forward()
-    ll.print_backward()
-    ll.remove_by_value(22)
-    ll.print_forward()
-    ll.print_backward()
+    doublylinklist.insert_values([45,7,12,567,99])
+    doublylinklist.insert_at_end(67)
+    doublylinklist.print_forward()
+    doublylinklist.print_backward()
+    doublylinklist.insert_after_value(7, 22)
+    doublylinklist.print_forward()
+    doublylinklist.print_backward()
+    doublylinklist.remove_by_value(22)
+    doublylinklist.print_forward()
+    doublylinklist.print_backward()
